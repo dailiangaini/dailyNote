@@ -3,6 +3,8 @@ package dailiang.daily.note;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -62,6 +64,17 @@ public class Tools {
         }
         stringBuffer.append(day);
         return stringBuffer.toString();
+    }
+
+    /**
+     * 获取该年第一周有几天
+     * @return
+     */
+    public static int getDaysOfFirstWeek(int year) throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(year + "-01-01");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+       return 7 - cal.get(Calendar.DAY_OF_WEEK) + 2;
     }
 
     /**
